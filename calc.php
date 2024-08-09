@@ -4,7 +4,7 @@ $x = "";
 $y = "";
 $error = "";
 $result = "";
-
+$warning = "";
 
 if(isset($_GET["operation"])){
     $x = $_GET["num1"];
@@ -20,17 +20,25 @@ if(isset($_GET["operation"])){
                 break;
             case "*" : $result = $x * $y;
                 break;
-            case "/" : $result = $x / $y;
+            case "/" :
+                if ($y != 0) {
+                    $result = $x / $y;
+                } else {;
+                    $warning =  "Ошибка: деление на ноль";
+                }
                 break;
 
         }
 
-    }else{
+    }else {
         $error = "Number please!!!";
     }
 
-
-
+}
+if(isset($_POST["reset"])){
+    $x = "";
+    $y = "";
+    $result = "";
 }
 ?>
 
@@ -46,6 +54,8 @@ if(isset($_GET["operation"])){
 
 <blockquote>
     <h1> <?= $error ?></h1>
+    <h1> <?= $warning ?></h1>
+
     <form action="" method="get">
 
 
@@ -79,6 +89,7 @@ if(isset($_GET["operation"])){
             <input type="submit" value="-" name="operation">
             <input type="submit" value="*" name="operation">
             <input type="submit" value="/" name="operation">
+            <input type="submit"  value="C" name="reset">
 
         </div>
     </form>
