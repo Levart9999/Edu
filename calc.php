@@ -26,7 +26,7 @@ if(isset($_GET["operation"])){
         }
 
     }else{
-        $error = "Number,please!!!";
+        $error = "Number please!!!";
     }
 
 

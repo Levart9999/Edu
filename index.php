@@ -19,6 +19,6 @@ elseif ($hour>=18 and $hour<23)
 <body>
 <blockquote>
     <h1 align="center"><?= $welcome ?></h1>
-</blockquote>
+
 </body>
 </html>
