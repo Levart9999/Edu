@@ -1,4 +1,0 @@
-INCLUDED
-<?php
-function foo(){}
-?>
