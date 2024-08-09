@@ -5,6 +5,7 @@ $y = "";
 $error = "";
 $result = "";
 $warning = "";
+$resultsArray = [];
 
 if(isset($_GET["operation"])){
     $x = $_GET["num1"];
@@ -27,9 +28,10 @@ if(isset($_GET["operation"])){
                     $warning =  "Ошибка: деление на ноль";
                 }
                 break;
-
         }
-
+        if ($result !== "" && $warning === "") {
+            $resultsArray[] = $result;
+        }
     }else {
         $error = "Number please!!!";
     }
