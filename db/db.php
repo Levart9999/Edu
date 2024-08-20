@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect('localhost', 'root', 'ion11', 'test');
+$link = mysqli_connect('localhost', 'root', '', 'test');
 if (!$link) {
     echo "Error: Unable to connect to MySQL." ;
 }
@@ -7,6 +7,6 @@ if (!$link) {
 $sql = "SELECT * FROM teachers";
 $result = mysqli_query($link, $sql);
 
-$row = mysqli_fetch_array($result);
+$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 print_r($row);
 
