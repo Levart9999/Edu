@@ -33,7 +33,7 @@ if(isset($_GET["operation"])){
             $resultsArray[] = $result;
         }
     }else {
-        $error = "Number please!!!";
+        $error = "Введите цифру!!!";
     }
 
 }
