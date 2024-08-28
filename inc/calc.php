@@ -5,12 +5,11 @@ $y = "";
 $error = "";
 $result = "";
 $warning = "";
-$resultsArray = [];
 
-if(isset($_GET["operation"])){
-    $x = $_GET["num1"];
-    $y = $_GET["num2"];
-    $oper = $_GET["operation"];
+if(isset($_POST["operation"])){
+    $x = $_POST["num1"];
+    $y = $_POST["num2"];
+    $oper = $_POST["operation"];
 
 
     if(is_numeric($x) && is_numeric($y)){
@@ -24,16 +23,16 @@ if(isset($_GET["operation"])){
             case "/" :
                 if ($y != 0) {
                     $result = $x / $y;
-                } else {;
+                } else {
                     $warning =  "Ошибка: деление на ноль";
                 }
                 break;
-        }
-        if ($result !== "" && $warning === "") {
-            $resultsArray[] = $result;
-        }
+				
+            default: $warning = "Unknown operation";
+		}
+       
     }else {
-        $error = "Введите цифру!!!";
+        $error = "Number please!!!";
     }
 
 }
@@ -57,8 +56,8 @@ if(isset($_POST["reset"])){
 <blockquote>
     <h1> <?= $error ?></h1>
     <h1> <?= $warning ?></h1>
-
-    <form action="" method="get">
+   
+    <form action="" method="post">
 
 
         <div>
