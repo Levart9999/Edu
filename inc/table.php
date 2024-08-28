@@ -1,8 +1,4 @@
-<?php
- 
 
-
-?>
 
 <?php
 include "lib.inc.php";
