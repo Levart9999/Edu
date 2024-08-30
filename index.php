@@ -10,7 +10,7 @@ elseif ($hour>=12 and $hour<18)
 elseif ($hour>=18 and $hour<23)
        $welcome = "Good evening";
 
-set_error_handler("myError");
+//set_error_handler("myError");
 
 
 

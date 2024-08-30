@@ -2,7 +2,7 @@
 function myError($no, $msg, $file, $line){
      if($no == E_USER_ERROR){
 	 echo "fuck";
-	 $s = $date("d-m-Y H:i:s") . " - $msg в $file:$line";
+	 $s = date("d-m-Y H:i:s") . " - $msg в $file:$line";
 	 error_log("$s\n", 3, "error.log");
 	 }
 }
