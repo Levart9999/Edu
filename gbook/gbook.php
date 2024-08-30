@@ -2,7 +2,7 @@
 
 const DB_HOST = "localhost";
 const DB_USER = "root";
-const DB_PASSWORD = "ion11";
+const DB_PASSWORD = "";
 const DB_NAME = "gbook";
 
 $link = mysqli_connect(DB_HOST, DB_USER,

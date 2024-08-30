@@ -1,7 +1,7 @@
 <?php
 const DB_HOST = "localhost";
 const DB_USER = "root";
-const DB_PASSWORD = "ion11";
+const DB_PASSWORD = "";
 const DB_NAME = "eshop";
 
 const ORDERS_LOG = "orders.log";
