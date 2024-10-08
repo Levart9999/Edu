@@ -1,55 +1,98 @@
 <?php
 
-const DB_HOST = "localhost";
-const DB_USER = "root";
-const DB_PASSWORD = "";
-const DB_NAME = "gbook";
+session_start();
+include "messages.php";
+$messObj = new messages();
 
-$link = mysqli_connect(DB_HOST, DB_USER,
-                    DB_PASSWORD, DB_NAME)
-or die(mysqli_connect_error());
+$addErrors = array();
+$successMsg = '';
 
-function clearStr($data): string
+if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-    global $link;
-    $data = trim(strip_tags($data));
-    return mysqli_real_escape_string($link, $data);
-}
-//    Сохранение записей в базу данных
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $name = clearStr($_POST["name"]);
-    $email = clearStr($_POST["email"]);
-    $msg = clearStr($_POST["msg"]);
-    $sql = sprintf("INSERT INTO msgs (name, email, msg) 
-                      VALUES (%s, %s, %s)", $name, $email, $msg);
-    mysqli_query($link, $sql);
-    header("Location:" . $_SERVER["REQUEST_URI"]);
-    exit;
-}
+    $name      = filter_var($_POST['name'],FILTER_SANITIZE_STRING);
+    $email     = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
+    $msg       = filter_var($_POST['msg'],FILTER_SANITIZE_EMAIL);
 
-//     Вывод записей из БД
-
-$sql = "SELECT id, name, email, msg, 
-                UNIX_TIMESTAMP(datetime) as dt
-          FROM msgs ORDER BY id DESC";
-$res = mysqli_query($link, $sql);
-echo "<p>Всего записей в гостевой книге: " .
-    mysqli_num_rows($res);
-while($row = mysqli_fetch_assoc($res)){
-    $dt = date("d.m.Y H:i", $row["dt"]);
-    $msg = nl2br($row["msg"]);
-    echo <<<MSG
-
-MSG;
-
-}
-
-//Удаление записи
-if(isset($_GET["delete"])){
-    $id  = abs((int)$_GET["delete"]);
-    if($id){
-        $sql = "DELETE FROM msgs WHERE id=$id";
-        mysqli_query($link, $sql);
-
+    if(strlen($name) < 8)
+    {
+        $addErrors[] = 'You Must Be Type Full Name';
+    }
+    if(! filter_var($email,FILTER_VALIDATE_EMAIL))
+    {
+        $addErrors[] = 'YouR Email Is Not Valid';
+    }
+    if(empty($addErrors))
+    {
+        if($messObj ->addMessage($name,$email,$msg))
+        {
+            $successMsg = "Message Added Success";
+        }
+        else
+        {
+            $addErrors[] = "Something Went Wrong Try Again";
+        }
     }
 }
+?>
+<div class="content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="section-header">
+                <h1>Guest Book</h1>
+            </div>
+            <div class="row guestbook">
+                <div class="col-md-12">
+<?php
+if(! empty($addErrors))
+{
+    foreach($addErrors as $error)
+    {
+        echo ' <div class="alert alert-danger">
+                                            <p>'.$error.'</p>
+                                        </div>';
+    }
+}
+?>
+<?php
+if(! empty($successMsg))
+{
+    echo ' <div class="alert alert-success">
+                                        <p>'.$successMsg.'</p>
+                                    </div>';
+}
+?>
+                    <div class="col-md-12">
+                        <div class="section-header">
+                            <h1>Add new message</h1>
+                        </div>
+
+                            <div class="form-group">
+                                <label for="content" class="col-sm-3 control-label">Your message</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" rows="6" id="content" name="content" placeholder="Message Content"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-sm-3 control-label">Your Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="col-sm-3 control-label">Your Email</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <button type="submit" class="btn btn-danger"><i class="fa fa-comments"></i> Add Message</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

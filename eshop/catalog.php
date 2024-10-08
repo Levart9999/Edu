@@ -1,12 +1,19 @@
 <?php
 
-global $count;
+global $count, $goods;
 require "inc/config.inc.php";
-require " inc/lib.inc.php";
-$goods = selectAllItems();
-if($goods === false){echo "ERROR";exit;}
-if(!count($goods)){echo "EMPTY";exit;}
+include "inc/lib.inc.php";
 
+$goods = selectAllItems();
+if ($goods === false) {
+    echo "ERROR";
+    exit;
+}
+
+if (!is_array($goods) || count($goods) === 0) {
+    echo "EMPTY";
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +46,7 @@ width="100%">
             <?= $item['id']?>"
             >In Basket!</a></td>
     </tr>
-  <?
+  <?php
     }
 ?>
 

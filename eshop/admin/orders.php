@@ -64,7 +64,7 @@ foreach($orders as $order) :
 
 </table>
 <p>Total goods amount:<?=$sum?></p>
-<?
+<?php
 endforeach;
 ?>
 </body>

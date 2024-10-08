@@ -14,14 +14,14 @@ function drawMenu($menu, $vertical=true){
 		return  false;
 	$style = "";
 	if(!$vertical)
-		$style = " style='display:inline;margin-rigth:15px'";
-	echo "<ul>";
+		$style = 'style= display:list-item';
+	echo "<menu>";
 foreach($menu as $item){
-	echo "<li$style>";
+	echo "<ol $style >";
 	echo "<a href='$item[href]'>{$item['link']}</a>";
-	echo "</li>";
+	echo "</ol >";
 }
-echo "</ul>";
+echo "</menu>";
 
 
 return true;
