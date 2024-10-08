@@ -7,7 +7,7 @@ class DataBase
 
     private string $host = "localhost";
     private string $user = "root";
-    private string $password = "ion11";
+    private string $password = "";
     private string $dbName = "news";
     private mysqli $connect;
 

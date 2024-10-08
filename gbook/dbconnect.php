@@ -5,7 +5,7 @@ class dbconnect
   protected $host = "localhost";
   protected $dbname = "gbook";
   protected $user = "root";
-  protected $password = "ion11";
+  protected $password = "";
   protected $option = array(PDO::MYSQL_ATTR_INIT_COMMAND =>'SET NAMES utf8');
 
 
