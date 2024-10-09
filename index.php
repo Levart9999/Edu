@@ -27,7 +27,7 @@ elseif ($hour>=18 and $hour<23)
             font-size: 35px;
             margin-top: 0.67em;
             margin-bottom: 0.67em;
-            margin-left: 5em;
+            margin-left: 0;
             margin-right:0;
             font-weight: bold;
         }
