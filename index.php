@@ -1,4 +1,5 @@
 <?php
+
 $hour = (int) strftime("%H");
 $welcome = "";
    if ($hour>0 and $hour<6)
@@ -10,11 +11,7 @@ elseif ($hour>=12 and $hour<18)
 elseif ($hour>=18 and $hour<23)
        $welcome = "Good evening";
 
-//set_error_handler("myError");
-
-
-
-    ?>
+?>
 
 
 <html>
@@ -62,9 +59,6 @@ elseif ($hour>=18 and $hour<23)
         <p>Author: LevArt9999<br>
         </p>
     </footer>
-
-
-
 
 </body>
 </html>

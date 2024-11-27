@@ -9,8 +9,5 @@ $leftMenu = [
 	['link'=>'News','href'=>'news/news.php'],
 ];
 
-if(!drawMenu($leftMenu))
-    trigger_error("fuck", E_USER_ERRROR);
 
 
-?>

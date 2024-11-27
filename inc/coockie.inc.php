@@ -1,5 +1,7 @@
 ﻿<?php
+
 $visitCounter = 0;
+
 if(isset($_COOKIE["visitCounter"]))
   $visitCounter = $_COOKIE["visitCounter"];
 	 $visitCounter++;

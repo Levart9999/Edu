@@ -1,5 +1,7 @@
 <?php
-function myError($no, $msg, $file, $line){
+
+function myError($no, $msg, $file, $line)
+{
      if($no == E_USER_ERROR){
 	 echo "fuck";
 	 $s = date("d-m-Y H:i:s") . " - $msg в $file:$line";
@@ -9,22 +11,23 @@ function myError($no, $msg, $file, $line){
  
 
 
-function drawMenu($menu, $vertical=true){
+function drawMenu($menu, $vertical=true)
+{
 	if(!is_array($menu))
 		return  false;
 	$style = "";
 	if(!$vertical)
 		$style = 'style= display:inline';
 	echo "<menu>";
-foreach($menu as $item){
-	echo "<li $style >";
-	echo "<a href='$item[href]'>{$item['link']}</a>";
-	echo "</li >";
+foreach($menu as $item)
+{
+	 echo "<li $style >";
+	 echo "<a href='$item[href]'>{$item['link']}</a>";
+	 echo "</li >";
 }
-echo "</menu>";
+     echo "</menu>";
 
-
-return true;
+     return true;
 }
 
 

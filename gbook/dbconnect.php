@@ -16,7 +16,8 @@ class dbconnect
             $connect = new PDO($link, $this->user, $this->password, $this->option);
             $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $connect;
-        } catch (PDOException $e) {
+        } catch (PDOException $e)
+        {
             return "failed to connection" . $e->getMessage();
         }
     }

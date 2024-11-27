@@ -10,5 +10,3 @@ interface INewsDB
  public function deleteNews(int $id):bool;
 
 }
-
-?>

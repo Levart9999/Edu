@@ -6,7 +6,8 @@ $error = "";
 $result = "";
 $warning = "";
 
-if(isset($_POST["operation"])){
+if(isset($_POST["operation"]))
+{
     $x = $_POST["num1"];
     $y = $_POST["num2"];
     $oper = $_POST["operation"];
@@ -24,7 +25,7 @@ if(isset($_POST["operation"])){
                 if ($y != 0) {
                     $result = $x / $y;
                 } else {
-                    $warning =  "Ошибка: деление на ноль";
+                    $warning =  "Error!";
                 }
                 break;
 				
@@ -36,7 +37,8 @@ if(isset($_POST["operation"])){
     }
 
 }
-if(isset($_POST["reset"])){
+if(isset($_POST["reset"]))
+{
     $x = "";
     $y = "";
     $result = "";

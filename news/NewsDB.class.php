@@ -54,15 +54,7 @@ class NewsDB implements INewsDB
 try {
     $newsDB = new NewsDB();
 
-    // Добавление новости
     $newsDB->addNews("Заголовок", "Категория", "Описание", "Источник");
-
-//    // Получение всех новостей
-//    $news = $newsDB->getNews();
-//    print_r($news);
-//
-//    // Удаление новости
-//    $newsDB->deleteNews(1);
 
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();

@@ -39,7 +39,8 @@ class DataBase
     {
         $result = $this->connect->query($sql);
 
-        if (!$result) {
+        if (!$result)
+        {
             throw new Exception('Query failed: ' . $this->connect->error);
         }
 
@@ -50,7 +51,8 @@ class DataBase
     {
         $stmt = $this->connect->prepare($sql);
 
-        if (!$stmt) {
+        if (!$stmt)
+        {
             throw new Exception('Failed to prepare statement: ' . $this->connect->error);
         }
 
@@ -62,14 +64,13 @@ class DataBase
         $this->connect->close();
     }
 
-    private function __clone()
-    {
-    }
+    private function __clone(){}
 
     public function __destruct()
     {
         $this->close();
     }
+
 }
 
 try {
@@ -79,11 +80,13 @@ try {
 
     $result = $db->query("SELECT * FROM news");
 
-    while ($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc())
+    {
         print_r($row);
     }
 
-} catch (Exception $e) {
-    echo "Error: " . $e->getMessage();
+    } catch (Exception $e) {
+         echo "Error: " . $e->getMessage();
+
 }
 
