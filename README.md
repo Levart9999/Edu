@@ -1,2 +1,2 @@
-# Edu
+# edu_php
 education project
