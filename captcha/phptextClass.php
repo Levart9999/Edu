@@ -11,7 +11,8 @@ class phptextClass
         $im = imagecreatetruecolor($imgWidth, $imgHeight);
         $textColor = imagecolorallocate($im, $textColor['r'],$textColor['g'],$textColor['b']);
 
-        if($backgroundColor==''){
+        if($backgroundColor=='')
+        {
             $colorCode=array('#56aad8', '#61c4a8', '#d3ab92');
             $backgroundColor = $this->hexToRGB($colorCode[rand(0, count($colorCode)-1)]);
             $backgroundColor = imagecolorallocate($im, $backgroundColor['r'],$backgroundColor['g'],$backgroundColor['b']);
@@ -23,7 +24,9 @@ class phptextClass
         imagefill($im,0,0,$backgroundColor);
         list($x, $y) = $this->ImageTTFCenter($im, $text, $font, $fontSize);
         imagettftext($im, $fontSize, 0, $x, $y, $textColor, $font, $text);
-        if(imagejpeg($im,$dir.$fileName,90)){
+
+        if(imagejpeg($im,$dir.$fileName,90))
+        {
             return json_encode(array('status'=>TRUE,'image'=>$dir.$fileName));
             imagedestroy($im);
         }
@@ -44,19 +47,26 @@ class phptextClass
         $backgroundColor = imagecolorallocate($im, $backgroundColor['r'],$backgroundColor['g'],$backgroundColor['b']);
 
 
-        if($noiceLines>0){
+        if($noiceLines>0)
+        {
             $noiceColor=$this->hexToRGB($noiceColor);
             $noiceColor = imagecolorallocate($im, $noiceColor['r'],$noiceColor['g'],$noiceColor['b']);
-            for( $i=0; $i<$noiceLines; $i++ ) {
+
+            for( $i=0; $i<$noiceLines; $i++ )
+            {
                 imageline($im, mt_rand(0,$imgWidth), mt_rand(0,$imgHeight),
                     mt_rand(0,$imgWidth), mt_rand(0,$imgHeight), $noiceColor);
-            }}
+            }
+        }
 
-        if($noiceDots>0){
-            for( $i=0; $i<$noiceDots; $i++ ) {
+        if($noiceDots>0)
+        {
+            for( $i=0; $i<$noiceDots; $i++ )
+            {
                 imagefilledellipse($im, mt_rand(0,$imgWidth),
                     mt_rand(0,$imgHeight), 3, 3, $textColor);
-            }}
+            }
+        }
 
         imagefill($im,0,0,$backgroundColor);
         list($x, $y) = $this->ImageTTFCenter($im, $text, $font, $fontSize);
@@ -65,7 +75,9 @@ class phptextClass
         imagejpeg($im,NULL,90);
         header('Content-Type: image/jpeg');
         imagedestroy($im);
-        if(isset($_SESSION)){
+
+        if(isset($_SESSION))
+        {
             $_SESSION['captcha_code'] = $text;
         }
     }

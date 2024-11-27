@@ -5,12 +5,15 @@ require "inc/config.inc.php";
 include "inc/lib.inc.php";
 
 $goods = selectAllItems();
-if ($goods === false) {
+
+if ($goods === false)
+{
     echo "ERROR";
     exit;
 }
 
-if (!is_array($goods) || count($goods) === 0) {
+if (!is_array($goods) || count($goods) === 0)
+{
     echo "EMPTY";
     exit;
 }

@@ -40,15 +40,18 @@ function selectAllItems()
          return $items;
 }
 
-function saveBasket(){
+function saveBasket()
+{
     global $basket;
     $basket = base64_encode(serialize($basket));
     setcookie("basket", $basket, 0x7FFFFFFF);
 }
 
-function basketInit(){
+function basketInit()
+{
     global $basket, $count;
-    if(!isset($_COOKIE["basket"])){
+    if(!isset($_COOKIE["basket"]))
+    {
         $basket = ['orderid'=>uniqid()];
         saveBasket();
     }else{
@@ -59,17 +62,20 @@ function basketInit(){
 
 }
 
-function removeBasket(){
+function removeBasket()
+{
 setcookie("basket", "deleted", time() - 3600);
 }
 
-function add2Basket($id){
+function add2Basket($id)
+{
     global $basket;
     $basket[$id] = 1;
      saveBasket();
 }
 
-function myBasket(){
+function myBasket()
+{
     global $basket, $link;
     $goods = array_keys($basket);
     array_shift($goods);
@@ -86,21 +92,24 @@ function result2Array($data)
     global $basket;
     $arr = [];
     while ($row = mysqli_fetch_array($data,
-        MYSQLI_ASSOC)) {
+        MYSQLI_ASSOC))
+    {
         $row ['quantity'] = $basket[$row['id']];
         $arr[] = $row;
     }
     return $arr;
 }
 
-function deleteItemFromBasket($id){
+function deleteItemFromBasket($id)
+{
     global $basket;
     unset($basket[$id]);
     saveBasket();
 
 }
 
-function saveOrder($datetime){
+function saveOrder($datetime)
+{
     global $link, $basket;
     $goods = myBasket();
     $stmt = mysqli_stmt_init($link);
@@ -112,7 +121,8 @@ function saveOrder($datetime){
             VALUES (?, ?, ?, ?, ?, ?, ?)';
     if(!mysqli_stmt_prepare($stmt, $sql))
         return false;
-    foreach($goods as $item){
+    foreach($goods as $item)
+    {
         mysqli_stmt_bind_param($stmt,
             "ssiiisi",
             $item['title'],
@@ -129,13 +139,15 @@ function saveOrder($datetime){
     return true;
 }
 
-function getOrder(){
+function getOrder()
+{
     global $link;
     if (!is_file(ORDERS_LOG))
         return false;
 $orders = file(ORDERS_LOG);
 $allorders = [];
-foreach($orders as $order){
+foreach($orders as $order)
+{
     list($name, $email, $phone, $address,
         $orderid, $date) = explode("|", $order);
     $orderinfo = [];

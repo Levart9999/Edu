@@ -9,7 +9,8 @@ $author = clearStr($_POST["author"]);
 $pubyear = clearInt($_POST["pubyear"]);
 $price = clearInt($_POST["price"]);
 
-if(!addItemToCatalog($title, $author, $pubyear, $price)){
+if(!addItemToCatalog($title, $author, $pubyear, $price))
+{
     echo "Error before save item to catalog";
 }else{
     header("Location: save2cat.php");

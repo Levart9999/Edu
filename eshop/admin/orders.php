@@ -16,8 +16,9 @@ require "../inc/config.inc.php";
 <h1>Orders on buy:</h1>
 <?php
 $orders = getOrder();
-//var_dump($orders);
-if(!$orders) {
+
+if(!$orders)
+{
    echo "No orders found";
    exit;
 }
@@ -45,7 +46,8 @@ foreach($orders as $order) :
     <?php
     $i = 1;
     $sum = 0;
-    foreach ($order["goods"] as $item) { ?>
+    foreach ($order["goods"] as $item)
+    { ?>
 
         <tr>
             <td><?= $i++?></td>

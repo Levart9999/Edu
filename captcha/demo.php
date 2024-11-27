@@ -1,7 +1,7 @@
 <?php session_start();
 
-if(isset($_POST['Submit'])){
-
+if(isset($_POST['Submit']))
+{
     if(empty($_SESSION['captcha_code'] ) || strcasecmp($_SESSION['captcha_code'], $_POST['captcha_code']) != 0){
         $msg="<span style='color:red'>The Validation code does not match!</span>";
     }else{
@@ -16,7 +16,8 @@ if(isset($_POST['Submit'])){
     <title>Captcha</title>
     <link href="./css/style.css" rel="stylesheet">
     <script type='text/javascript'>
-        function refreshCaptcha(){
+        function refreshCaptcha()
+        {
             var img = document.images['captchaimg'];
             img.src = img.src.substring(0,img.src.lastIndexOf("?"))+"?rand="+Math.random()*1000;
         }

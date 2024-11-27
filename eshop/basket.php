@@ -38,7 +38,8 @@ $goods = myBasket();
     <?php
     $i = 1;
     $sum = 0;
-    foreach ($goods as $item) { ?>
+    foreach ($goods as $item)
+    { ?>
 
         <tr>
             <td><?= $i++?></td>
@@ -51,10 +52,10 @@ $goods = myBasket();
             <?= $item['id']?>"
                 >Delete!</a></td>
         </tr>
-        <?
+        <?php
         $sum += $item['price'] * $item['quantity'];
     }
-    ?>
+        ?>
 
 </table>
 
